@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PlaylistAppBeltexam</title>
+    <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div class="error" style="color:red;">
+      <% if flash[:errors] %>
+        <% flash[:errors].each do |e| %>
+          <%= e %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<nav>
+  <a href="/dashboard/<%=current_user.id%>">Dashboard</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/logout">Logout</a>
+</nav>
+
+<h1><%= @user.first_name %> <%= @user.last_name %>'s Playlist</h1>
+
+<table>
+  <tr>
+      <th>Artist</th>
+      <th>Title</th>
+      <th>Times Added</th>
+  </tr>
+  <% @additions.each do |a| %>
+  <tr>
+      <td><%=a.song.artist%></td>
+      <td><%=a.song.title%></td>
+      <td><%= a=Addition.where(playlist_id: @playlist.id, song_id: a.song.id).count %></td>
+  </tr>
+  <% end %>
+</table>

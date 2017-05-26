@@ -1,0 +1,40 @@
+<nav>
+  <a href="/logout">Logout</a>
+</nav>
+
+<h1>Hello, <%=current_user.first_name%> <%= current_user.last_name%>!</h1>
+
+
+<% if flash[:notice] %>
+  <div class="notice" style="color:red;"><%= flash[:notice] %></div>
+<% end %>
+
+<h3>All the songs in our hub:</h3>
+
+<table style="border:1px solid blue;">
+  <tr>
+      <th style="border:1px solid blue;">Artist</th>
+      <th style="border:1px solid blue;">Title</th>
+      <th style="border:1px solid blue;"># of Times Song Added</th>
+      <th style="border:1px solid blue;">Add to Playlist</th>
+  </tr>
+  <% @songs.each do |s| %>
+    <tr>
+      <td><%=s.artist%></td>
+      <td><a href="/songs/<%=s.id%>"><%=s.title%></a></td>
+      <td><%= a=Addition.where(song_id: s.id).count %></td>
+      <td><%= button_to 'Add', {:controller => "additions", :action => "create", :song_id => s.id, :playlist_id => @playlist.id} , :method=>:post  %></td>
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+
+<h3>Add a Song:</h3>
+<form action="/songs/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  Title: <input type="text" name="title"><br><br>
+  Artist: <input type="text" name="artist"><br><br>
+  <br>
+  <input type="submit" value="Add Song">
+</form>
