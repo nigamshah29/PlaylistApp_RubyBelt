@@ -30,7 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'pg'
+# gem 'pg'
 gem 'rails-footnotes', '>= 4.0.0', '<5'
 
 group :development, :test do
